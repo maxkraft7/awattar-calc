@@ -1,6 +1,3 @@
-# conversation:
-# https://app.textcortex.com/user/dashboard/chat?conversation=8fed5242-48ce-4045-baaf-08d5619d6a48
-
 import argparse
 import pandas as pd
 from datetime import datetime
