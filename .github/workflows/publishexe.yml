@@ -1,45 +1,35 @@
-name: Build and Release Executable
+name: Package Application with Pyinstaller
 
 on:
   push:
-    branches: [ main ]
+    tags:
+      - '*'
+      # branches: [ main ]
+
+permissions:
+  contents: write
 
 jobs:
   build:
+
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+    - uses: actions/checkout@v2
 
-    - name: Setup Python
-      uses: actions/setup-python@v2
+    - name: Package Application
+      uses: JackMcKew/pyinstaller-action-windows@main
       with:
-        python-version: '3.x'
+        path: .
 
-    - name: Install dependencies
-      run: pip install awattar pandas netznoe-smartmeter-portal-api pyinstaller argparse
+    #- uses: actions/upload-artifact@v2
+    #  with:
+    #    name: bills-table-${{  github.ref_name }}
+    #    path: src/dist/windows
 
-    - name: Build executable
-      run: pyinstaller energy_usage.py --onefile
-
-    - name: Create release
-      uses: actions/create-release@v1
+    - name: Release with Notes
+      uses: softprops/action-gh-release@v1
       with:
-        tag_name: v1.0.0
-        release_name: Release v1.0.0
-        body: |
-          This is the first release of the energy usage calculator.
-        draft: false
-        prerelease: false
-
-    - name: Upload executable
+        files: src/dist/windows/*
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      uses: actions/upload-release-asset@v1
-      with:
-        asset_path: dist/energy_usage
-        asset_name: energy_usage
-        asset_content_type: application/octet-stream
-        tag_name: v1.0.0
-
