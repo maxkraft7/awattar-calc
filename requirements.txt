@@ -1,0 +1,4 @@
+awattar
+pandas
+netznoe-smartmeter-portal-api
+openpyxl
