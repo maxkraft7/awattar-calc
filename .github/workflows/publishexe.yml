@@ -22,14 +22,14 @@ jobs:
       with:
         path: src
 
-    #- uses: actions/upload-artifact@v2
-    #  with:
-    #    name: bills-table-${{  github.ref_name }}
-    #    path: src/dist/windows
-
-    - name: Release with Notes
-      uses: softprops/action-gh-release@v1
+    - uses: actions/upload-artifact@v2
       with:
-        files: src/dist/windows/*
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        name: energy-usage-${{  github.ref_name }}
+        path: src/dist/windows
+
+    #- name: Release with Notes
+    #  uses: softprops/action-gh-release@v1
+    #  with:
+    #    files: src/dist/windows/*
+    #  env:
+    #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
