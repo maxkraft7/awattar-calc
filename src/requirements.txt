@@ -1,5 +1,6 @@
-awattar
-pandas
-netznoe-smartmeter-portal-api
-openpyxl
-argparse
+awattar==0.2.1
+pandas==2.0.2
+netznoe-smartmeter-portal-api==1.0.2 
+openpyxl==3.1.2 
+argparse==1.4.0
+chardet==5.1.0 
